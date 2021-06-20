@@ -1,4 +1,8 @@
-#importing required libraries
+#
+# Long Short Term Memory (LSTM) model
+#
+# NOT WORKING YET
+#
 from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM
@@ -6,29 +10,38 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#creating dataframe
-data = pd.read_csv('datatestedit.csv')
 
-new_data = pd.DataFrame(index=range(0,len(data)),columns=['time', 'a1'])
+#creating dataframe fro9m csv data
+data = pd.read_csv('data/doge-USD.csv')
 
+#remove index attribute
+data.drop('n', axis=1, inplace=True)
 
-for i in range(0,len(data)):
-    new_data['time'][i] = data['time'][i]
-    new_data['a1'][i] = data['a1'][i]
+dependent = data.loc[:,'a1'].to_numpy()
 
-print(new_data)
+print(data.head(5))
 
 #setting index
-new_data.index = new_data.time
-new_data.drop('time', axis=1, inplace=True)
+data.index = data.time
 
 #creating train and test sets
-dataset = new_data.values
+dataset = data.values
+train = dependent[:350]
+valid = dependent[351:]
 
-train = dataset[0:350,:]
-valid = dataset[351:,:]
+# # specify columns to plot
+# groups = [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+# i = 1
+# # plot each column
+# plt.figure()
+# for group in groups:
+# 	plt.subplot(len(groups), 1, i)
+# 	plt.plot(dataset[:, group])
+# 	plt.title(data.columns[group], y=0.5, loc='right')
+# 	i += 1
+# plt.show()
 
-print(train)
+
 
 # #converting dataset into x_train and y_train
 # scaler = MinMaxScaler(feature_range=(0, 1))
