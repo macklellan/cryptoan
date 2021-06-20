@@ -2,3 +2,8 @@ numpy
 pandas
 requests
 krakenex
+matplotlib
+sklearn
+seaborn
+keras
+tensorflow

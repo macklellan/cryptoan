@@ -25,4 +25,5 @@ Machine learning on crypto currency markets. I'd like to develop a model to accu
 
 
 **REFERENCES**
+https://docs.kraken.com/rest/
 https://algotrading101.com/learn/kraken-api-guide/
